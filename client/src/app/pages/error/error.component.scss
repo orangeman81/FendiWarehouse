@@ -1,0 +1,20 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 80.4vh;
+    align-items: center;
+    justify-content: center;
+
+    &>*:not(:last-child) {
+        margin-bottom: 32px;
+    }
+
+    section {
+        text-align: center;
+
+        p {
+            font-size: 20px
+        }
+    }
+}

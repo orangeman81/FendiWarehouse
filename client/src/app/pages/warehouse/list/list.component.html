@@ -1,0 +1,70 @@
+<app-main-header [title]="'Warehouse'" [subtitle]="'Products in warehouse'">
+    <app-search (search)="changeQuery($event)" (action)="openParams()"></app-search>
+</app-main-header>
+<main class="container">
+    <mat-card>
+        <mat-accordion>
+            <mat-expansion-panel class="mat-elevation-z0" hideToggle *ngFor="let item of $dataSource | async">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        {{item.model}}
+                    </mat-panel-title>
+                    <mat-panel-description>
+                        <mat-icon [color]="(item.status == 'IN' ? 'primary' : 'accent')">store</mat-icon>
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+    
+                <mat-list>
+                    <mat-list-item>
+                        <span matLine><strong>Type</strong></span>
+                        <span matLine>{{item.type}}</span>
+                    </mat-list-item>
+                    <mat-list-item>
+                        <span matLine><strong>Producer</strong></span>
+                        <span matLine>{{item.producer}}</span>
+                    </mat-list-item>
+                    <mat-list-item>
+                        <span matLine><strong>SerialNumber</strong></span>
+                        <span matLine>{{item.serialNumber}}</span>
+                    </mat-list-item>
+                    <mat-list-item *ngIf="item.dateAssignment">
+                        <span matLine><strong>Assignment Data</strong></span>
+                        <span matLine>{{item.dateAssignment | date}}</span>
+                    </mat-list-item>
+                    <mat-list-item *ngIf="item.layoutKeyboard">
+                        <span matLine><strong>Keyboard</strong></span>
+                        <span matLine>{{item.layoutKeyboard}}</span>
+                    </mat-list-item>
+                    <mat-list-item *ngIf="item.imei">
+                        <span matLine><strong>Imei</strong></span>
+                        <span matLine>{{item.imei}}</span>
+                    </mat-list-item>
+                    <mat-list-item>
+                        <span matLine><strong>Value</strong></span>
+                        <span matLine>{{item.value | currency: 'EUR'}}</span>
+                    </mat-list-item>
+                    <mat-list-item>
+                        <span matLine><strong>Note</strong></span>
+                        <span matLine>{{item.note}}</span>
+                    </mat-list-item>
+                </mat-list>
+    
+                <mat-action-row>
+                    <a [routerLink]="['details', item.id]" mat-button color="accent">Details</a>
+                    <button *ngIf="item.status == 'OUT'" mat-button color="accent" (click)="unassign(item)">Unassign</button>
+                    <button mat-button color="accent" (click)="edit(item)">Edit</button>
+                    <button mat-button color="accent" (click)="delete(item)">Delete</button>
+                </mat-action-row>
+            </mat-expansion-panel>
+    
+        </mat-accordion>
+        <mat-paginator [length]="$total | async" [pageSize]="10" [showFirstLastButtons]="true"
+            [hidePageSize]="true" (page)="changePage($event)">
+        </mat-paginator>
+    </mat-card>
+    <div class="fabWarapper">
+        <button mat-fab color="accent" (click)="add()">
+            <mat-icon>add</mat-icon>
+        </button>
+    </div>
+</main>

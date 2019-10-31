@@ -1,0 +1,27 @@
+:host {
+    mat-sidenav {
+        width: 256px;
+
+        header {
+            min-height: 64px;
+            padding: 0 16px;
+            margin: 24px 0;
+
+            p {
+                font-size: 14px
+            }
+        }
+    }
+
+    mat-sidenav-content {
+        min-height: calc(100vh - 64px)
+    }
+
+    mat-toolbar {
+        @media screen and (max-width: 600px) {
+            h3 {
+                font-size: 14px
+            }
+        }
+    }
+}

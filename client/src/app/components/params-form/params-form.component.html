@@ -1,0 +1,35 @@
+<h3 mat-dialog-title>Query Params</h3>
+<form [formGroup]="paramsForm" (ngSubmit)="save()">
+    <mat-dialog-content>
+        <mat-form-field color="accent">
+            <mat-select placeholder="Type" formControlName="type">
+                <mat-option *ngFor="let type of select.types" [value]="type">{{type}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field color="accent">
+            <mat-select placeholder="State" formControlName="status">
+                <mat-option *ngFor="let state of states" [value]="state">{{state}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field color="accent">
+            <input matInput placeholder="Serial number" formControlName="serialNumber">
+        </mat-form-field>
+        <mat-form-field color="accent">
+            <mat-select placeholder="Params" formControlName="param">
+                <mat-option *ngFor="let param of select.paramsList" [value]="param.value">{{param.label}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field color="accent" *ngIf="isQuery">
+            <input matInput [placeholder]="param.value" formControlName="query">
+        </mat-form-field>
+        <mat-form-field color="accent" *ngIf="isLaptop">
+            <mat-select placeholder="Keyboard" formControlName="layoutKeyboard">
+                <mat-option *ngFor="let lang of select.languages" [value]="lang">{{lang}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </mat-dialog-content>
+    <mat-dialog-actions class="f-end">
+        <button mat-button aria-label="Cancel" type="button" (click)="close()">Cancel</button>
+        <button mat-button color="accent" aria-label="Save" type="submit" [disabled]="paramsForm.invalid">Save</button>
+    </mat-dialog-actions>
+</form>

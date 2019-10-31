@@ -1,0 +1,96 @@
+//user agent overrides
+body,
+figure {
+    margin: 0;
+}
+
+ul {
+    padding: 0;
+    margin: 0;
+
+    li {
+        list-style: none;
+    }
+}
+
+// body background-color
+body {
+    background-color: $bodyGray;
+}
+
+fieldset {
+    display: block;
+    margin: 0;
+    padding: 0;
+    border: none;
+    margin-inline-start: 0;
+    margin-inline-end: 0;
+    padding-block-start: 0;
+    padding-inline-start: 0;
+    padding-inline-end: 0;
+    padding-block-end: 0;
+    min-inline-size: fit-content;
+}
+
+// layout min-height fix
+main {
+    min-height: 56.5vh;
+    position: relative
+}
+
+// images
+img.res {
+    max-width: 100%
+}
+
+// ui elements
+.actions {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+
+    a:not(:last-child),
+    button:not(:last-child) {
+        margin-right: 16px
+    }
+}
+
+.fabWarapper {
+    position: absolute;
+    top: auto;
+    bottom: -88px;
+    right: 0;
+}
+
+.user-img {
+    border-radius: 50%;
+    object-fit: cover
+}
+
+//app overlay
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 120vh;
+    background-color: rgba(0, 0, 0, .3);
+    z-index: 998;
+
+    &>* {
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center
+    }
+}
+
+// scrollbar
+::-webkit-scrollbar {
+    width: 16px;
+    background: $lGray;
+}
+
+::-webkit-scrollbar-thumb {
+    background: $dGray;
+}

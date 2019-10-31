@@ -1,0 +1,33 @@
+<app-main-header [title]="'Store details'" [subtitle]="details.city">
+</app-main-header>
+<main class="container">
+    <mat-card>
+        <mat-list>
+            <h3 mat-subheader>Product details</h3>
+            <mat-list-item>
+                <span matLine><strong>Store name</strong></span>
+                <span matLine>{{details.name}}</span>
+            </mat-list-item>
+            <mat-list-item>
+                <span matLine><strong>City</strong></span>
+                <span matLine>{{details.city}}</span>
+            </mat-list-item>
+        </mat-list>
+        <mat-list>
+            <h3 mat-subheader>Products</h3>
+            <mat-list-item *ngFor="let item of products">
+                <mat-icon mat-list-icon color="accent">store</mat-icon>
+                <h4 matLine><strong>{{item.model}}</strong></h4>
+                <p matLine>{{item.serialNumber}}</p>
+            </mat-list-item>
+        </mat-list>
+        <mat-paginator *ngIf="total >= 10" [length]="total" [pageSize]="10" [showFirstLastButtons]="true"
+            [hidePageSize]="true" (page)="changePage($event)">
+        </mat-paginator>
+    </mat-card>
+    <div class="fabWarapper">
+        <a mat-fab color="accent" routerLink="/stores">
+            <mat-icon>arrow_back</mat-icon>
+        </a>
+    </div>
+</main>

@@ -1,0 +1,100 @@
+html {
+    font-weight: $regular;
+    font-family: 'Montserrat', sans-serif;
+    line-height: 1.4;
+    color: $off-black;
+
+    @media screen and (min-width: 0) {
+        font-size: 14px;
+    }
+
+    @media screen and (min-width: $tablet) {
+        font-size: 15px;
+    }
+
+    @media screen and (min-width: $desktop) {
+        font-size: 16px;
+    }
+}
+
+// headings
+h1 {
+    font-size: $h1-size;
+    font-weight: $medium
+}
+
+h2 {
+    font-size: $h2-size;
+}
+
+h3 {
+    font-size: $h3-size;
+}
+
+h4,
+.title {
+    font-size: $h4-size;
+}
+
+h5 {
+    font-size: $h5-size;
+}
+
+h6 {
+    font-size: $h6-size;
+}
+
+small {
+    font-size: .8em;
+}
+
+strong {
+    font-weight: $bold;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.title {
+    line-height: 1.2;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.title {
+    margin: 0;
+}
+
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+    font-weight: inherit;
+}
+
+p {
+    margin: .25rem 0;
+    line-height: inherit
+}
+
+// links
+a {
+    text-decoration: none;
+    cursor: pointer;
+    color: inherit;
+    @extend .ease;
+
+    &:hover,
+    &.active {
+        color: $color
+    }
+}

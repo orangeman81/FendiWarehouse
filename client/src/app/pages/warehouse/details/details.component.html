@@ -1,0 +1,63 @@
+<app-main-header [title]="details.model" [subtitle]="'Product details'">
+</app-main-header>
+<main class="container">
+    <mat-card>
+        <mat-list>
+            <h3 mat-subheader>Product details</h3>
+            <mat-list-item>
+                <span matLine><strong>Type</strong></span>
+                <span matLine>{{details.type}}</span>
+            </mat-list-item>
+            <mat-list-item>
+                <span matLine><strong>Model</strong></span>
+                <span matLine>{{details.model}}</span>
+            </mat-list-item>
+            <mat-list-item>
+                <span matLine><strong>Producer</strong></span>
+                <span matLine>{{details.producer}}</span>
+            </mat-list-item>
+            <mat-list-item>
+                <span matLine><strong>Serial Number</strong></span>
+                <span matLine>{{details.serialNumber}}</span>
+            </mat-list-item>
+            <mat-list-item *ngIf="details?.imei">
+                <span matLine><strong>Imei</strong></span>
+                <span matLine>{{details.imei}}</span>
+            </mat-list-item>
+            <mat-list-item *ngIf="details?.layoutKeyboard">
+                <span matLine><strong>Keyboard</strong></span>
+                <span matLine>{{details.layoutKeyboard}}</span>
+            </mat-list-item>
+            <mat-list-item>
+                <span matLine><strong>Status</strong></span>
+                <span matLine>{{details.status}}</span>
+            </mat-list-item>
+            <mat-list-item *ngIf="details?.dateAssignment">
+                <span matLine><strong>Last Assignment</strong></span>
+                <span matLine>{{details.dateAssignment | date: 'dd/mm/yyyy'}}</span>
+            </mat-list-item>
+            <mat-list-item *ngIf="details?.note">
+                <span matLine><strong>Notes</strong></span>
+                <span matLine>{{details.note}}</span>
+            </mat-list-item>
+        </mat-list>
+        <mat-list>
+            <h3 mat-subheader>Movements</h3>
+            <mat-list-item *ngFor="let item of movements">
+                <mat-icon mat-list-icon [color]="(item.status == 'IN' ? 'primary' : 'accent')">store</mat-icon>
+                <h4 matLine><strong>{{item.product.model}}</strong></h4>
+                <p matLine>{{item.product.serialNumber}}</p>
+                <p matLine *ngIf="item.status == 'OUT'">{{item.store.name}}</p>
+                <p matLine>{{item.date | date: 'dd/mm/yyyy'}}</p>
+            </mat-list-item>
+        </mat-list>
+        <mat-paginator *ngIf="total >= 10" [length]="total" [pageSize]="10" [showFirstLastButtons]="true" [hidePageSize]="true"
+            (page)="changePage($event)">
+        </mat-paginator>
+    </mat-card>
+    <div class="fabWarapper">
+        <a mat-fab color="accent" routerLink="/warehouse">
+            <mat-icon>arrow_back</mat-icon>
+        </a>
+    </div>
+</main>

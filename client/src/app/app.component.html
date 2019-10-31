@@ -1,0 +1,48 @@
+<div class="example-container">
+  <mat-toolbar class="f-space-between">
+    <span class="d-flex f-center">
+      <button mat-icon-button (click)="snav.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <img class="ml-16" src="./assets/logo.svg" width="24px" alt="">
+    </span>
+    <span class="d-flex f-center" *ngIf="loggedIn">
+      <h3>{{user.name}}</h3>
+      <img [src]="user.picture" width="24px" alt="user profile" class="ml-16 mr-8 user-img">
+      <button mat-icon-button (click)="download()">
+        <mat-icon>get_app</mat-icon>
+      </button>
+      <button mat-icon-button (click)="logout()">
+        <mat-icon>exit_to_app</mat-icon>
+      </button>
+    </span>
+  </mat-toolbar>
+
+  <mat-sidenav-container>
+    <mat-sidenav [autoFocus]="false" #snav>
+      <header *ngIf="loggedIn">
+        <img [src]="user.picture" width="48px" alt="user profile" class="mb-16 user-img">
+        <h4><strong>{{user.name}}</strong></h4>
+        <p>{{user.email}}</p>
+      </header>
+      <mat-divider></mat-divider>
+      <mat-nav-list>
+        <a mat-list-item [routerLink]="nav.link" (click)="snav.close()" *ngFor="let nav of fillerNav">{{nav.label}}</a>
+      </mat-nav-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+      <div [@routeAnimations]="prepareRoute(outlet)">
+        <router-outlet #outlet="outlet"></router-outlet>
+      </div>
+      <footer class="footer">
+        <strong>Fendi Warehouse</strong>&emsp;©Innovaway 2019
+      </footer>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
+<div id="overlay" *ngIf="$loading | async">
+  <span>
+    <mat-spinner color="accent"></mat-spinner>
+  </span>
+</div>

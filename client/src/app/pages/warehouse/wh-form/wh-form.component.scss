@@ -1,0 +1,16 @@
+:host::ng-deep {
+    display: block;
+    min-width: 40vw;
+    @media screen and (max-width: 600px) {
+        min-width: 60vw;
+    }
+}
+
+mat-dialog-content {
+    display: flex;
+    flex-direction: column;
+
+    &>* {
+        width: 100%
+    }
+}

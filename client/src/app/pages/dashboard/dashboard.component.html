@@ -1,0 +1,33 @@
+<app-main-header [title]="'Dashboard'" [subtitle]="'All products stats'"></app-main-header>
+<mat-tab-group color="accent" backgroundColor="primary" mat-align-tabs="center" headerPosition="below">
+    <mat-tab label="All">
+        <main class="container">
+            <h2>All products chart</h2>
+            <div class="d-flex flex-layout-c">
+                <ngx-charts-advanced-pie-chart [scheme]="colors" [results]="prodAll"
+                    (select)="details($event)">
+                </ngx-charts-advanced-pie-chart>
+            </div>
+        </main>
+    </mat-tab>
+    <mat-tab label="In">
+        <main class="container">
+            <h2>In products chart</h2>
+            <div class="d-flex flex-layout-c">
+                <ngx-charts-advanced-pie-chart [scheme]="colors" [results]="prodIn"
+                    (select)="details($event)">
+                </ngx-charts-advanced-pie-chart>
+            </div>
+        </main>
+    </mat-tab>
+    <mat-tab label="Out">
+        <main class="container">
+            <h2>Out products chart</h2>
+            <div class="d-flex flex-layout-c">
+                <ngx-charts-advanced-pie-chart [scheme]="colors" [results]="prodOut"
+                    (select)="details($event)">
+                </ngx-charts-advanced-pie-chart>
+            </div>
+        </main>
+    </mat-tab>
+</mat-tab-group>

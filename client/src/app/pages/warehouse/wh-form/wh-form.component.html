@@ -1,0 +1,40 @@
+<h3 mat-dialog-title>{{title}}</h3>
+<form [formGroup]="whForm" (ngSubmit)="save()">
+    <mat-dialog-content>
+        <mat-form-field color="accent">
+            <mat-select placeholder="Type" formControlName="type">
+                <mat-option *ngFor="let type of typesList" [value]="type">{{type}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field color="accent">
+            <input matInput placeholder="Model" formControlName="model">
+        </mat-form-field>
+        <mat-form-field color="accent">
+            <input matInput placeholder="Producer" formControlName="producer">
+        </mat-form-field>
+        <mat-form-field color="accent">
+            <input matInput placeholder="Serial Number" autocomplete="off" formControlName="serialNumber">
+        </mat-form-field>
+        <mat-form-field color="accent">
+            <input matInput type="number" autocomplete="off" placeholder="Value" formControlName="value">
+        </mat-form-field>
+        <mat-form-field color="accent" *ngIf="type === 'Mobile device'">
+            <input matInput placeholder="imei" formControlName="imei">
+        </mat-form-field>
+
+        <mat-form-field color="accent" *ngIf="type === 'Laptop'">
+            <mat-select placeholder="Keyboard" formControlName="keyboard">
+                <mat-option *ngFor="let lang of langList" [value]="lang">{{lang}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field color="accent">
+            <textarea matInput placeholder="Notes" formControlName="note"></textarea>
+        </mat-form-field>
+    </mat-dialog-content>
+    <mat-dialog-actions class="f-end">
+        <button mat-button aria-label="Cancel" type="button" (click)="close()">Cancel</button>
+        <button mat-button color="accent" aria-label="Save" type="submit" [disabled]="whForm.invalid">Save</button>
+    </mat-dialog-actions>
+</form>

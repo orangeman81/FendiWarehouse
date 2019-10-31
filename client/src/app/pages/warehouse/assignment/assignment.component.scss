@@ -1,0 +1,19 @@
+:host::ng-deep {
+    .mat-list-base .mat-list-item .mat-list-item-content {
+        justify-content: space-between
+    }
+
+    form {
+        min-height: 33vh;
+        width: 100%
+    }
+
+    fieldset {
+        width: 100%;
+        text-align: center
+    }
+
+    mat-form-field {
+        width: 56%
+    }
+}

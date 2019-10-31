@@ -1,0 +1,14 @@
+:host::ng-deep {
+
+    mat-accordion .mat-expansion-panel-header-title,
+    mat-accordion .mat-expansion-panel-header-description {
+        flex-grow: 0;
+    }
+
+    mat-accordion {
+        .mat-content {
+            justify-content: space-between;
+            align-items: center;
+        }
+    }
+}

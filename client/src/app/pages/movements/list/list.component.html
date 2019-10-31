@@ -1,0 +1,19 @@
+<app-main-header [title]="'Movements'" [subtitle]="'All Fendi eu products movements'">
+    <app-search [withAction]="false" (search)="changeQuery($event)"></app-search>
+</app-main-header>
+<main class="container">
+    <mat-card>
+        <mat-action-list>
+            <h3 mat-subheader>Movements</h3>
+            <mat-list-item *ngFor="let item of $dataSource | async" (click)="openDetail(item)">
+                <mat-icon mat-list-icon [color]="(item.status == 'IN' ? 'primary' : 'accent')">store</mat-icon>
+                <p matLine>{{item.date | date: 'dd/mm/yy'}}</p>
+                <h4 matLine><strong>{{item.product.model}}</strong></h4>
+                <p matLine *ngIf="item.status == 'OUT'">{{item.store.name}}</p>
+            </mat-list-item>
+        </mat-action-list>
+        <mat-paginator [length]="$total | async" [pageSize]="10" [showFirstLastButtons]="true" [hidePageSize]="true"
+            (page)="changePage($event)">
+        </mat-paginator>
+    </mat-card>
+</main>

@@ -1,0 +1,30 @@
+<app-main-header [title]="'Stores'" [subtitle]="'All Fendi eu stores'">
+    <app-search [param]="'name'" [status]="false" [withAction]="false" (search)="changeQuery($event)">
+    </app-search>
+</app-main-header>
+<main class="container">
+    <mat-card>
+        <mat-list>
+            <h3 mat-subheader>Stores</h3>
+            <mat-list-item *ngFor="let item of $dataSource | async">
+                <a matLine [routerLink]="['details', item.id]">{{item.name}}</a>
+                <span class="actions">
+                    <button mat-icon-button color="accent" (click)="edit(item)">
+                        <mat-icon>update</mat-icon>
+                    </button>
+                    <button mat-icon-button color="accent" (click)="delete(item)">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </span>
+            </mat-list-item>
+        </mat-list>
+        <mat-paginator [length]="$total | async" [pageSize]="10" [showFirstLastButtons]="true" [hidePageSize]="true"
+            (page)="changePage($event)">
+        </mat-paginator>
+    </mat-card>
+    <div class="fabWarapper">
+        <button mat-fab color="accent" (click)="add()">
+            <mat-icon>add</mat-icon>
+        </button>
+    </div>
+</main>

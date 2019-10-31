@@ -1,0 +1,42 @@
+<h3 mat-dialog-title>{{data.product.model}}</h3>
+<mat-dialog-content>
+    <mat-list role="list">
+        <mat-list-item role="listitem">
+            <span matLine><strong>serial Number</strong></span>
+            <span matLine>{{data.product.serialNumber}}</span>
+        </mat-list-item>
+        <mat-list-item role="listitem">
+            <span matLine><strong>Assignment Date</strong></span>
+            <span matLine>{{data.date | date}}</span>
+        </mat-list-item>
+        <mat-list-item role="listitem">
+            <span matLine><strong>Actual State</strong></span>
+            <span matLine>{{data.status}}</span>
+        </mat-list-item>
+        <mat-list-item role="listitem">
+            <span matLine><strong>Tracking Number</strong></span>
+            <span matLine>{{data.trackingNumber}}</span>
+        </mat-list-item>
+        <span *ngIf="data.status === 'OUT'">
+            <mat-list-item role="listitem">
+                <span matLine><strong>Shipping Cost</strong></span>
+                <span matLine>{{data.shippingCost}}</span>
+            </mat-list-item>
+            <mat-list-item role="listitem">
+                <span matLine><strong>Technician</strong></span>
+                <span matLine>{{data.technician}}</span>
+            </mat-list-item>
+            <mat-list-item role="listitem">
+                <span matLine><strong>User email</strong></span>
+                <span matLine>{{data.user}}</span>
+            </mat-list-item>
+        </span>
+        <mat-list-item role="listitem">
+            <span matLine><strong>Notes</strong></span>
+            <span matLine>{{data.note}}</span>
+        </mat-list-item>
+    </mat-list>
+</mat-dialog-content>
+<mat-dialog-actions class="f-end">
+    <button mat-button aria-label="Close" type="button" (click)="close()">Close</button>
+</mat-dialog-actions>

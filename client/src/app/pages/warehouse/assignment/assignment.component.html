@@ -1,0 +1,107 @@
+<app-main-header [title]="'Assignment'" [subtitle]="'Assign a product'"></app-main-header>
+<main class="container">
+    <mat-card>
+        <mat-horizontal-stepper [linear]="true" #stepper>
+            <mat-step [stepControl]="storeForm">
+                <ng-template matStepLabel>Store</ng-template>
+                <form class="d-flex flex-layout-c">
+                    <mat-form-field color="accent">
+                        <input type="text" placeholder="Select a Store" aria-label="Store" [formControl]="storeForm"
+                            matInput [matAutocomplete]="storeAuto">
+                        <mat-autocomplete #storeAuto="matAutocomplete" [displayWith]="displayName">
+                            <mat-option *ngFor="let item of $stores | async" [value]="item">
+                                {{item.name}}
+                            </mat-option>
+                        </mat-autocomplete>
+                    </mat-form-field>
+                </form>
+                <footer class="actions">
+                    <button mat-button matStepperNext [disabled]="storeForm.invalid">Next</button>
+                </footer>
+            </mat-step>
+            <mat-step [stepControl]="productForm">
+                <ng-template matStepLabel>Product</ng-template>
+                <form class="d-flex flex-layout-c">
+                    <mat-form-field color="accent">
+                        <input type="text" placeholder="Select a Product by serial" aria-label="Product"
+                            [formControl]="productForm" matInput [matAutocomplete]="productAuto">
+                        <mat-autocomplete #productAuto="matAutocomplete" [displayWith]="displayModel">
+                            <mat-option *ngFor="let item of $products | async" [value]="item">
+                                {{item.serialNumber}}
+                            </mat-option>
+                        </mat-autocomplete>
+                    </mat-form-field>
+                </form>
+                <footer class="actions">
+                    <button mat-button matStepperPrevious>Back</button>
+                    <button mat-button matStepperNext [disabled]="productForm.invalid">Next</button>
+                </footer>
+            </mat-step>
+            <mat-step [stepControl]="assigneeForm">
+                <ng-template matStepLabel>Assignee</ng-template>
+                <form class="d-flex flex-layout-c" [formGroup]="assigneeForm">
+                    <fieldset>
+                        <mat-form-field color="accent">
+                            <input type="text" placeholder="Employee" aria-label="Employee" formControlName="employee"
+                                matInput>
+                        </mat-form-field>
+                        <mat-form-field color="accent">
+                            <input type="number" placeholder="Tracking number" aria-label="Tracking number"
+                                formControlName="trackingNumber" matInput>
+                        </mat-form-field>
+                        <mat-form-field color="accent">
+                            <input type="number" placeholder="Shipping cost" aria-label="Shipping cost"
+                                formControlName="cost" matInput>
+                        </mat-form-field>
+                        <mat-form-field color="accent">
+                            <textarea matInput placeholder="Notes" aria-label="Notes" formControlName="note"></textarea>
+                        </mat-form-field>
+                    </fieldset>
+                </form>
+                <footer class="actions">
+                    <button mat-button matStepperPrevious>Back</button>
+                    <button mat-button matStepperNext [disabled]="assigneeForm.invalid">Next</button>
+                </footer>
+            </mat-step>
+            <mat-step>
+                <ng-template matStepLabel>Done</ng-template>
+                <mat-list *ngIf="assigneeForm.valid">
+                    <h3 mat-subheader>Assignment results</h3>
+                    <mat-list-item>
+                        <span><strong>Store</strong></span>
+                        <span>{{storeForm.value.name}}</span>
+                    </mat-list-item>
+                    <mat-list-item>
+                        <span><strong>Product</strong></span>
+                        <span>{{productForm.value.model}}</span>
+                    </mat-list-item>
+                    <mat-list-item>
+                        <span><strong>Employee</strong></span>
+                        <span>{{assigneeForm.value.employee}}</span>
+                    </mat-list-item>
+                    <mat-list-item>
+                        <span><strong>Technician</strong></span>
+                        <span>{{userEmail}}</span>
+                    </mat-list-item>
+                    <mat-list-item>
+                        <span><strong>Tracking number</strong></span>
+                        <span>{{assigneeForm.value.trackingNumber}}</span>
+                    </mat-list-item>
+                    <mat-list-item>
+                        <span><strong>Shipping cost</strong></span>
+                        <span>{{assigneeForm.value.cost}}</span>
+                    </mat-list-item>
+                    <mat-list-item>
+                        <span><strong>Notes</strong></span>
+                        <span>{{assigneeForm.value.note}}</span>
+                    </mat-list-item>
+                </mat-list>
+                <footer class="actions mt-56">
+                    <button mat-button matStepperPrevious>Back</button>
+                    <button mat-button (click)="stepper.reset()">Reset</button>
+                    <button mat-button (click)="assign()">Accept</button>
+                </footer>
+            </mat-step>
+        </mat-horizontal-stepper>
+    </mat-card>
+</main>
